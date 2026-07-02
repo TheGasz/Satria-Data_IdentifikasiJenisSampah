@@ -1,7 +1,7 @@
 skor_variansi,skor_edge_density,skor_entropi,skor_grabcut,skor_akhir,kategori,nama_file,label,status
-0.387,0.278,0.87,0.416,0.457,perlu_cek_manual,R_1.jpg,Recyclable,ok
-0.7,0.52,0.594,0.576,0.6,perlu_cek_manual,R_1001.jpg,Recyclable,ok
-0.508,0.818,0.685,0.38,0.611,perlu_cek_manual,R_1002.jpg,Recyclable,ok
+0.387,0.278,0.87,0.416,0.457,background_terpisah,R_1.jpg,Recyclable,ok
+0.7,0.52,0.594,0.576,0.6,background_terpisah,R_1001.jpg,Recyclable,ok
+0.508,0.818,0.685,0.38,0.611,background_terpisah,R_1002.jpg,Recyclable,ok
 1.0,0.0,1.0,0.509,0.602,perlu_cek_manual,R_1004.jpg,Recyclable,ok
 0.258,0.628,0.581,0.24,0.43,perlu_cek_manual,R_1008.jpg,Recyclable,ok
 0.63,0.332,0.329,0.22,0.398,perlu_cek_manual,R_101.jpg,Recyclable,ok
