@@ -1,0 +1,16 @@
+file_a,label_a,file_b,label_b,jarak_embedding
+train\1_Electronic\35.e-waste-pickup1-300x200.png,Electronic,train\2_Organic\O_6740.jpg,Organic,12.992339134216309
+train\0_Recyclable\R_3047.jpg,Recyclable,train\1_Electronic\battery_48.jpg,Electronic,13.289464950561523
+train\0_Recyclable\R_2948.jpg,Recyclable,train\1_Electronic\battery_8.jpg,Electronic,13.4819974899292
+train\0_Recyclable\R_198.jpg,Recyclable,train\2_Organic\O_1129.jpg,Organic,13.4833984375
+train\0_Recyclable\R_4755.jpg,Recyclable,train\2_Organic\O_8465.jpg,Organic,13.663717269897461
+train\0_Recyclable\R_8114.jpg,Recyclable,train\1_Electronic\battery_48.jpg,Electronic,13.733012199401855
+train\0_Recyclable\R_3047.jpg,Recyclable,train\1_Electronic\battery_8.jpg,Electronic,13.736910820007324
+train\0_Recyclable\R_4755.jpg,Recyclable,train\2_Organic\O_8369.jpg,Organic,13.841802597045898
+train\0_Recyclable\R_4377.jpg,Recyclable,train\2_Organic\O_5709.jpg,Organic,13.850630760192871
+train\0_Recyclable\R_4755.jpg,Recyclable,train\2_Organic\O_8414.jpg,Organic,14.030653953552246
+train\0_Recyclable\R_6498.jpg,Recyclable,train\1_Electronic\battery_9.jpg,Electronic,14.30974006652832
+train\0_Recyclable\R_6346.jpg,Recyclable,train\2_Organic\O_8752.jpg,Organic,14.425057411193848
+train\0_Recyclable\R_695.jpg,Recyclable,train\2_Organic\O_5709.jpg,Organic,14.45144271850586
+train\0_Recyclable\R_6498.jpg,Recyclable,train\1_Electronic\battery_284.jpg,Electronic,14.502039909362793
+train\0_Recyclable\R_6498.jpg,Recyclable,train\1_Electronic\battery_254.jpg,Electronic,14.511740684509277
