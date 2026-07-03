@@ -46,7 +46,8 @@ except NameError:
 
 BASE_DIR = os.path.dirname(current_dir)
 
-MANIFEST_PATH = os.path.join(BASE_DIR, "Preprocessing_Data", "train_manifest.csv")
+TRAIN_MANIFEST_PATH = os.path.join(BASE_DIR, "Preprocessing_Data", "train_manifest.csv")
+VAL_MANIFEST_PATH = os.path.join(BASE_DIR, "Preprocessing_Data", "val_manifest.csv")
 KOLOM_PATH = "file_path"
 KOLOM_LABEL = "label"
 
@@ -268,29 +269,13 @@ def dapatkan_transform_val(ukuran_input=UKURAN_INPUT):
     ])
 
 
-def buat_dataloader(manifest_path, label_map, batch_size=BATCH_SIZE,
-                     num_workers=NUM_WORKERS, rasio_val=0.15, seed=42):
+def buat_dataloader(train_manifest_path, val_manifest_path, label_map, batch_size=BATCH_SIZE,
+                     num_workers=NUM_WORKERS):
     """
-    Membaca manifest, membagi data menjadi train dan validasi dengan
-    stratifikasi sederhana per kelas, lalu membungkusnya ke DataLoader.
+    Membaca manifest train dan validasi secara terpisah, lalu membungkusnya ke DataLoader.
     """
-    df_manifest = pd.read_csv(manifest_path)
-
-    df_train_list = []
-    df_val_list = []
-
-    rng = np.random.default_rng(seed)
-
-    for label_nama in df_manifest[KOLOM_LABEL].unique():
-        subset = df_manifest[df_manifest[KOLOM_LABEL] == label_nama]
-        subset = subset.sample(frac=1.0, random_state=seed).reset_index(drop=True)
-
-        jumlah_val = int(len(subset) * rasio_val)
-        df_val_list.append(subset.iloc[:jumlah_val])
-        df_train_list.append(subset.iloc[jumlah_val:])
-
-    df_train = pd.concat(df_train_list).reset_index(drop=True)
-    df_val = pd.concat(df_val_list).reset_index(drop=True)
+    df_train = pd.read_csv(train_manifest_path)
+    df_val = pd.read_csv(val_manifest_path)
 
     print(f"Jumlah data train {len(df_train)}, jumlah data validasi {len(df_val)}")
 
