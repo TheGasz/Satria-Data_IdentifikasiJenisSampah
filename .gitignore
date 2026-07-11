@@ -5,3 +5,4 @@ Preprocessing_Data/augmented_electronic
 train_manifest.csv
 val_manifest.csv
 *.pth
+*.npz
