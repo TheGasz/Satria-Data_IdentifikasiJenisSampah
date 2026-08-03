@@ -94,18 +94,70 @@ HARD_EXAMPLE_MIN_SCORE = 0.72
 # Bagian 1, Arsitektur Model
 # ============================================================
 
+class RMSNorm(nn.Module):
+    """
+    Root Mean Square Layer Normalization.
+    Menormalkan skala aktivasi lewat root mean square saja.
+    """
+    def __init__(self, dim, eps=1e-6):
+        super().__init__()
+        self.eps = eps
+        self.weight = nn.Parameter(torch.ones(dim))
+
+    def forward(self, x):
+        rms = torch.sqrt(x.pow(2).mean(dim=-1, keepdim=True) + self.eps)
+        return (x / rms) * self.weight
+
 class SampahClassifier(nn.Module):
-    def __init__(self, num_classes=3, pretrained=True, backbone_name=BACKBONE_NAME):
+    def __init__(
+        self, num_classes=3, pretrained=True, backbone_name=BACKBONE_NAME,
+        hidden_dim=512, dropout=0.3, activation="silu", norm_type="rmsnorm",
+        n_layers=2, hidden_dim2=256
+    ):
         super(SampahClassifier, self).__init__()
         self.backbone = timm.create_model(
             backbone_name, pretrained=pretrained, num_classes=0
         )
         num_features = self.backbone.num_features
 
-        self.classifier = nn.Sequential(
-            nn.Dropout(p=0.2),
-            nn.Linear(num_features, num_classes)
-        )
+        def buat_aktivasi():
+            if activation == "gelu":
+                return nn.GELU()
+            elif activation == "silu":
+                return nn.SiLU()
+            raise ValueError(f"activation '{activation}' tidak dikenali, pakai 'gelu' atau 'silu'")
+
+        def buat_norm(dim):
+            if norm_type == "rmsnorm":
+                return RMSNorm(dim)
+            elif norm_type == "none":
+                return nn.Identity()
+            raise ValueError(f"norm_type '{norm_type}' tidak dikenali, pakai 'none' atau 'rmsnorm'")
+
+        if n_layers == 1:
+            self.classifier = nn.Sequential(
+                nn.Linear(num_features, hidden_dim),
+                buat_norm(hidden_dim),
+                buat_aktivasi(),
+                nn.Dropout(p=dropout),
+                nn.Linear(hidden_dim, num_classes),
+            )
+        elif n_layers == 2:
+            if hidden_dim2 is None:
+                raise ValueError("hidden_dim2 wajib diisi kalau n_layers=2")
+            self.classifier = nn.Sequential(
+                nn.Linear(num_features, hidden_dim),
+                buat_norm(hidden_dim),
+                buat_aktivasi(),
+                nn.Dropout(p=dropout),
+                nn.Linear(hidden_dim, hidden_dim2),
+                buat_norm(hidden_dim2),
+                buat_aktivasi(),
+                nn.Dropout(p=dropout),
+                nn.Linear(hidden_dim2, num_classes),
+            )
+        else:
+            raise ValueError(f"n_layers={n_layers} tidak didukung, cuma 1 atau 2")
 
     def forward(self, x):
         features = self.backbone(x)

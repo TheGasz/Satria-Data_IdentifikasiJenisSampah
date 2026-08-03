@@ -2,7 +2,14 @@ train/
 test/
 project_overview.md
 Preprocessing_Data/augmented_electronic
-train_manifest.csv
-val_manifest.csv
+Preprocessing_Data/train_manifest.csv
+Preprocessing_Data/val_manifest.csv
 *.pth
 *.npz
+*.csv
+*.png
+*.zip
+Train_model/best_model/cache_embedding*
+Train_model/Best_model/9962(gtasli)/siglip_patchmax.ipynb
+Train_model/Best_model/9962(gtasli)/siglip_patchmax_clean.ipynb
+Train_model/Best_model/9962(gtasli)/embedding_visualization.ipynb
