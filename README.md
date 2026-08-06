@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Last Commit](https://img.shields.io/github/last-commit/TheGasz/Satria-Data_IdentifikasiJenisSampah)](https://github.com/TheGasz/Satria-Data_IdentifikasiJenisSampah)
-[![F1 Score](https://img.shields.io/badge/F1_Score-0.9962-brightgreen.svg)]()
+[![F1 Score](https://img.shields.io/badge/F1_Score-0.9951-brightgreen.svg)]()
 
 Solusi untuk kompetisi klasifikasi sampah tiga kelas: **Recyclable**, **Organic**, dan **Electronic**. F1 Score terbaik yang berhasil diraih: **0.9962** pada test set kompetisi.
 
