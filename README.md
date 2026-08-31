@@ -82,13 +82,17 @@ Karakteristik warna hue yang menunjukkan kecenderungan warna tertentu untuk kela
 ```
 ├── train/                          # Gambar training
 ├── test/                           # Gambar testing
+├── EDA/
+│   └── EDA.ipynb                   # Eksplorasi data
 ├── Preprocessing_Data/
+│   ├── Preprocessing.ipynb         # Pembuatan manifest
 │   ├── train_manifest.csv
 │   └── val_manifest.csv
-├── Train_model/
+├── BDC_SigLIP_PatchMax_.ipynb      ← ENTRY POINT UTAMA TRAINING
+├── Train_model/                    # (Histori / model sebelumnya)
 │   └── Best_model/
 │       └── 9962(gtasli)/
-│           └── siglip_patchmax_clean.ipynb   ← ENTRY POINT UTAMA
+│           └── siglip_patchmax_clean.ipynb
 ├── Inference/
 │   └── prediksi_full_test.py
 ├── requirements.txt
@@ -105,11 +109,21 @@ Karakteristik warna hue yang menunjukkan kecenderungan warna tertentu untuk kela
 pip install -r requirements.txt
 ```
 
-1. Buka **`Train_model/Best_model/9962(gtasli)/siglip_patchmax_clean.ipynb`**.
+### 1. Exploratory Data Analysis (Opsional)
+Buka dan jalankan **`EDA/EDA.ipynb`**. Notebook ini digunakan untuk melihat distribusi data (seperti t-SNE) dan pemisahan fitur antarkelas.
+
+### 2. Preprocessing Data
+Buka dan jalankan **`Preprocessing_Data/Preprocessing.ipynb`**.
+- Notebook ini digunakan untuk memproses data gambar awal beserta augmentasinya.
+- Menghasilkan file **`train_manifest.csv`** dan **`val_manifest.csv`**.
+- Pastikan folder gambar `train/` dan `test/` serta ground truth sudah tersedia.
+
+### 3. Training & Inference Utama
+1. Buka **`BDC_SigLIP_PatchMax_.ipynb`** di direktori utama (root).
 2. Sesuaikan `ROOT_DIR` di cell konfigurasi awal jika struktur folder berbeda.
    - Di Google Colab: arahkan ke path Google Drive kamu.
    - Di lokal: cukup ubah ke path absolut folder ini.
-3. Pastikan folder `train/`, `test/`, dan manifest CSV sudah berada di path yang benar.
+3. Pastikan folder `train/`, `test/`, dan manifest CSV dari tahap preprocessing (`train_manifest.csv` & `val_manifest.csv`) sudah berada di path yang benar.
 4. Jalankan notebook dari atas ke bawah (**Run All**). Urutan eksekusi:
    - Load konfigurasi & setup seed
    - Ekstraksi embedding SigLIP v1 dan v2 dengan caching (kalau cache sudah ada, step ini langsung skip)

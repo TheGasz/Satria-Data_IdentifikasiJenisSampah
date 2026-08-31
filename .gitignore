@@ -13,3 +13,5 @@ Train_model/best_model/cache_embedding*
 Train_model/Best_model/9962(gtasli)/siglip_patchmax.ipynb
 Train_model/Best_model/9962(gtasli)/siglip_patchmax_clean.ipynb
 Train_model/Best_model/9962(gtasli)/embedding_visualization.ipynb
+archive/
+Train_model/Best_model/9962(gtasli)/siglip_patchmax_cleanoutput.ipynb
